@@ -1,6 +1,6 @@
 import "./Form.css";
 import Button from "@mui/material/Button";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   TextField,
   Checkbox,
@@ -17,6 +17,7 @@ const Form = () => {
   const [errorUsername, setErrorUsername] = useState(false);
   const [errorAddress, setErrorAddress] = useState(false);
   const [errorAcceptPolicy, setErrorAcceptPolicy] = useState(false);
+  const [disabled, setDisabled] = useState(true);
   const [username, setUsername] = useState("");
   const [address, setAddress] = useState("");
   const [acceptPolicy, setAcceptPolicy] = useState(false);
@@ -28,6 +29,14 @@ const Form = () => {
   const handleChange = (event) => {
     setAcceptPolicy(event.target.checked);
   };
+
+  useEffect(() => {
+    if (username === "") {
+      setDisabled(true);
+    } else {
+      setDisabled(false);
+    }
+  }, [username]);
 
   const nextStep = () => {
     switch (formStep) {
@@ -138,7 +147,12 @@ const Form = () => {
               previous
             </Button>
           ) : null}
-          <Button onClick={nextStep} type="button" variant="contained">
+          <Button
+            disabled={disabled}
+            onClick={nextStep}
+            type="button"
+            variant="contained"
+          >
             Next step
           </Button>
         </>
