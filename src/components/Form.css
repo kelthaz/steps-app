@@ -1,0 +1,16 @@
+.container {
+    width: 40%;
+    height: 40%;
+    background-color: white;
+    border: 1.5px solid gray;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.form-tittle {
+    color: #5B5C60;
+}
+
+.button-container {
+    margin-top: 10px;
+}
